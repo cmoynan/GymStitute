@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-cmoynan-gymstitute-bx4n3h4ydrh.ws.codeinstitute-ide.net']
 
+CSRF_TRUSTED_ORIGINS = ['https://8000-cmoynan-gymstitute-bx4n3h4ydrh.ws.codeinstitute-ide.net']
+
+
 
 # Application definition
 
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'home',
+    'products',
 ]
 
 MIDDLEWARE = [
