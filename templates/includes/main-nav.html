@@ -17,7 +17,7 @@
                 Clothing
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="clothing-link">
-                <a href="" class="dropdown-item">All Clothing</a>
+                <a href="{% url 'products' %}?category=Clothing" class="dropdown-item">All Clothing</a>
             </div>
         </li>
 
@@ -26,7 +26,7 @@
                 Electronics
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="homeware-link">
-                <a href="" class="dropdown-item">All Electronics</a>
+                <a href="{% url 'products' %}?category=Electronics" class="dropdown-item">All Electronics</a>
             </div>
         </li>
 
@@ -35,7 +35,7 @@
                 Meal Plans
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="specials-link">
-                <a href="" class="dropdown-item">All Meal Plans</a>
+                <a href="{% url 'products' %}?category=Meal Plans" class="dropdown-item">All Meal Plans</a>
             </div>
         </li>
     </ul>
