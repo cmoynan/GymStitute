@@ -27,9 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-cmoynan-gymstitute-bx4n3h4ydrh.ws.codeinstitute-ide.net']
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-cmoynan-gymstitute-bx4n3h4ydrh.ws.codeinstitute-ide.net']
-
-
 
 # Application definition
 
@@ -44,6 +41,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +60,10 @@ ROOT_URLCONF = 'gymstitute.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
