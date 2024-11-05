@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="overlay"></div>
+<div class="container mb-2">
+    <div class="row">
+        <div class="col">
+            <hr>
+            <h2 class="logo-font mb-4">Checkout</h2>
+            <hr>
+        </div>
+    </div>
+
+    <form id="payment-form" method="POST">
+        {% csrf_token %}
+        <input type="text" name="full_name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="phone_number" placeholder="Phone Number" required>
+        <input type="text" name="address" placeholder="Address" required>
+        <input type="text" name="city" placeholder="City" required>
+        <input type="text" name="postal_code" placeholder="Postal Code" required>
+        <input type="text" name="country" placeholder="Country" required>
+        
+        <!-- Stripe Elements Placeholder -->
+        <div id="card-element"></div>
+        
+        <button id="submit">Pay Now</button>
+    </form>
+
+    <script>
+        const stripe = Stripe('{{ stripe_public_key }}');
+        const elements = stripe.elements();
+        const card = elements.create('card');
+        card.mount('#card-element');
+
+        const form = document.getElementById('payment-form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const {paymentIntent, error} = await stripe.confirmCardPayment(
+                "{{ client_secret }}", {
+                    payment_method: {
+                        card: card,
+                        billing_details: {
+                            name: document.querySelector('input[name="full_name"]').value
+                        }
+                    }
+                }
+            );
+
+            if (error) {
+                alert(error.message);
+            } else {
+                form.submit();
+            }
+        });
+    </script>
+</body>
+</html>
