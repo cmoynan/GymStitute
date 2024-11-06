@@ -12,6 +12,7 @@ def bag_contents(request):
 
     for item_id, item_data in bag.items():
         if isinstance(item_data, int):
+            # Non-size-based item
             product = get_object_or_404(Product, pk=item_id)
             total += item_data * product.price
             product_count += item_data
@@ -21,24 +22,26 @@ def bag_contents(request):
                 'product': product,
             })
         else:
+            # Size-based item
             product = get_object_or_404(Product, pk=item_id)
             for size, quantity in item_data['items_by_size'].items():
                 total += quantity * product.price
                 product_count += quantity
                 bag_items.append({
                     'item_id': item_id,
-                    'quantity': item_data,
+                    'quantity': quantity,  # Use quantity of each size, not item_data
                     'product': product,
                     'size': size,
                 })
 
+    # Calculate delivery based on the total
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
     else:
         delivery = 0
         free_delivery_delta = 0
-    
+
     grand_total = delivery + total
     
     context = {
