@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpR
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
-
+from profiles.models import UserProfile
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 from products.models import Product
@@ -48,6 +48,10 @@ def checkout(request):
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
+            order = order_form.save(commit=False)
+        if request.user.is_authenticated:
+            user_profile = UserProfile.objects.get(user=request.user)
+            order.user_profile = user_profile
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
@@ -130,6 +134,21 @@ def checkout_success(request, order_number):
 
     if 'bag' in request.session:
         del request.session['bag']
+
+    if save_info and request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        profile_data = {
+            'default_phone_number': order.phone_number,
+            'default_country': order.country,
+            'default_postcode': order.postcode,
+            'default_town_or_city': order.town_or_city,
+            'default_street_address1': order.street_address1,
+            'default_street_address2': order.street_address2,
+            'default_county': order.county,
+        }
+        for field, value in profile_data.items():
+            setattr(profile, field, value)
+        profile.save()    
 
     template = 'checkout/checkout_success.html'
     context = {
