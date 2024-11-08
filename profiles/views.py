@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from checkout.models import Order, OrderLineItem
 from .forms import UserProfileForm
+from bag.contexts import bag_contents
 
 # Create your views here.
 @login_required
