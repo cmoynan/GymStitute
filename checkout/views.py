@@ -28,17 +28,6 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 
-from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.contrib import messages
-from django.conf import settings
-from .forms import OrderForm
-from .models import Order, OrderLineItem
-from profiles.models import UserProfile
-from products.models import Product
-from bag.contexts import bag_contents
-import stripe
-import json
-
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -68,7 +57,7 @@ def checkout(request):
             # Save the order with the user profile if logged in
             if request.user.is_authenticated:
                 user_profile = UserProfile.objects.get(user=request.user)
-                order.user_profile = user_profile
+                order.user = request.user
 
             order.save()
 

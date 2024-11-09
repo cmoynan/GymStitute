@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-10">
+    <h2 class="mb-4">Order Details</h2>
+
+    <!-- Order Summary -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <strong>Order Number:</strong> {{ order.order_number }}
+            <span class="float-right"><strong>Order Date:</strong> {{ order.date|date:"d M Y, H:i" }}</span>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Order Summary</h5>
+            <p class="card-text">
+                <strong>Full Name:</strong> {{ order.full_name }}<br>
+                <strong>Email:</strong> {{ order.email }}<br>
+                <strong>Phone Number:</strong> {{ order.phone_number }}
+            </p>
+        </div>
+    </div>
+
+    <!-- Shipping Address -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Shipping Address</h5>
+        </div>
+        <div class="card-body">
+            <p>
+                {{ order.street_address1 }}<br>
+                {% if order.street_address2 %}{{ order.street_address2 }}<br>{% endif %}
+                {{ order.town_or_city }}<br>
+                {{ order.county }}<br>
+                {{ order.country }}<br>
+                <strong>Postal Code:</strong> {{ order.postcode }}
+            </p>
+        </div>
+    </div>
+
+    <!-- Order Items -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Order Items</h5>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Size</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order.lineitems.all %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>{% if item.product_size %}{{ item.product_size }}{% else %}N/A{% endif %}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.product.price }}</td>
+                        <td>${{ item.lineitem_total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4" class="text-right">Order Total:</th>
+                        <th>${{ order.order_total }}</th>
+                    </tr>
+                    <tr>
+                        <th colspan="4" class="text-right">Delivery Cost:</th>
+                        <th>${{ order.delivery_cost }}</th>
+                    </tr>
+                    <tr>
+                        <th colspan="4" class="text-right">Grand Total:</th>
+                        <th>${{ order.grand_total }}</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <a href="{% url 'profile' %}" class="btn btn-primary mt-3">Back to Profile</a>
+</div>
+{% endblock %}

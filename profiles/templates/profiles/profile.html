@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-12 col-lg-6">
             <p class="text-white">Default Delivery Information</p>
-            <<form action="{% url 'profile' %}" method="POST" id="profile-update-form">
+            <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                 {% csrf_token %}
                 {{ form|crispy }}
             
@@ -41,24 +41,27 @@
                 <table class="table table-bordered table-hover order-table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Order Number</th>
-                            <th>Details</th>
+                            <th>Order Number
+                                <p class="text-white small ">Click on the Order Number to view the full order details.</p>
+                            </th>
+                            <th>Order Date</th>
+                            <th>Order Amount</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% if orders %}
                             {% for order in orders %}
                             <tr>
-                                <td>{{ order.order_number }}</td>
-                                <td>
-                                    <a href="{% url 'order_detail' order.order_number %}"
-                                       class="btn btn-sm btn-primary">View Details</a>
-                                </td>
+                                <td><a href="{% url 'order_detail' order.order_number %}" class="text-bold">
+                                    {{ order.order_number }}
+                                </a></td>
+                                <td>{{ order.date|date:"d M Y, H:i" }}</td>
+                                <td>${{ order.grand_total }}</td>
                             </tr>
                             {% endfor %}
                         {% else %}
                         <tr>
-                            <td colspan="4" class="text-center text-muted">You have no orders.</td>
+                            <td colspan="3" class="text-center text-muted">You have no orders.</td>
                         </tr>
                         {% endif %}
                     </tbody>
