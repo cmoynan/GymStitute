@@ -119,5 +119,16 @@ btn-outline-black {
 
     body {
         height: calc(100vh - 116px);
+        font-size: small;
     }
+
+}
+
+@media (max-width: 541px) {
+
+    #delivery-banner {
+        display: none;
+    }
+
+
 }
