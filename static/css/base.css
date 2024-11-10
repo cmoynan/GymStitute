@@ -109,6 +109,10 @@ btn-outline-black {
     .header-container {
         padding-top: 164px;
     }
+
+    #delivery-banner h4 {
+        font-size: .9rem;
+    }
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */
@@ -124,11 +128,9 @@ btn-outline-black {
 
 }
 
-@media (max-width: 541px) {
-
+@media (max-width: 350px) {
     #delivery-banner {
         display: none;
     }
-
 
 }
