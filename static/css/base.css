@@ -87,6 +87,77 @@ btn-outline-black {
 	z-index: -1;
 }
 
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
+.alert {
+    margin: 15px;
+    padding: 15px;
+    min-width: 200px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding-right: 35px;  /* Make room for close button */
+}
+
+.btn-close {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: inherit;
+    opacity: .5;
+    padding: 0;
+    cursor: pointer;
+}
+
+.btn-close:hover {
+    opacity: .75;
+}
+
+.btn-close span {
+    position: relative;
+    top: -2px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+    color: #0c5460;
+}
+
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
@@ -110,9 +181,6 @@ btn-outline-black {
         padding-top: 164px;
     }
 
-    #delivery-banner h4 {
-        font-size: .9rem;
-    }
 }
 
 /* pad the top a bit when navbar is collapsed on mobile */
@@ -125,6 +193,21 @@ btn-outline-black {
         height: calc(100vh - 116px);
         font-size: small;
     }
+
+    .message-container {
+            top: 60px;
+            right: 10px;
+            left: 10px;
+        }
+        
+    .alert {
+            margin: 10px;
+            padding: 10px;
+        }
+
+    #delivery-banner h4 {
+            font-size: .9rem;
+        }    
 
 }
 
