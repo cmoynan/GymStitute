@@ -14,11 +14,14 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 def subscription_list(request):
     """View to list all available subscriptions"""
     subscriptions = SubscriptionType.objects.filter(is_active=True)
+    
     user_subscriptions = Subscription.objects.filter(user=request.user, is_active=True)
+    user_subscription_type_ids = user_subscriptions.values_list('subscription_type_id', flat=True)
     
     context = {
         'subscriptions': subscriptions,
         'user_subscriptions': user_subscriptions,
+        'user_subscription_type_ids': list(user_subscription_type_ids),
     }
     return render(request, 'subscriptions/subscription_list.html', context)
 

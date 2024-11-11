@@ -10,14 +10,14 @@
 
 <div class="subscription-container">
     <h1 class="text-3xl font-bold mb-8">Subscribe to {{ subscription.name }}</h1>
-    
+
     <div class="subscription-card">
         <div class="subscription-card__content">
             <h2 class="text-2xl font-semibold mb-2">Plan Details</h2>
             <p class="text-gray-600 mb-2">${{ subscription.price }}/month</p>
             <p class="mb-4">{{ subscription.description }}</p>
         </div>
-        
+
         <form id="payment-form" action="{% url 'create_subscription' subscription.id %}" method="POST">
             {% csrf_token %}
             <div class="mb-4">
@@ -25,13 +25,14 @@
                     Credit or debit card
                 </label>
                 <div id="card-element" class="border rounded p-3">
-                    
+
                 </div>
                 <div id="card-errors" role="alert" class="text-red-500 text-sm mt-2"></div>
             </div>
-            
-            <button type="submit" 
-                    class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+
+            <button type="submit" class="w-full text-white font-semibold px-4 py-2 rounded transition duration-300"
+                style="background-color: #3b82f6; color: white;" onmouseover="this.style.backgroundColor='#2563eb';"
+                onmouseout="this.style.backgroundColor='#3b82f6';">
                 Subscribe Now
             </button>
         </form>
@@ -39,7 +40,7 @@
 </div>
 
 <script>
-    
+
     var stripe = Stripe('{{ stripe_public_key }}');
     var elements = stripe.elements();
 
@@ -47,7 +48,7 @@
 
     card.mount('#card-element');
 
-    card.addEventListener('change', function(event) {
+    card.addEventListener('change', function (event) {
         var displayError = document.getElementById('card-errors');
         if (event.error) {
             displayError.textContent = event.error.message;
@@ -57,10 +58,10 @@
     });
 
     var form = document.getElementById('payment-form');
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        stripe.createToken(card).then(function(result) {
+        stripe.createToken(card).then(function (result) {
             if (result.error) {
                 var errorElement = document.getElementById('card-errors');
                 errorElement.textContent = result.error.message;
@@ -82,6 +83,7 @@
     }
 </script>
 </body>
+
 </html>
 
 {% endblock %}
