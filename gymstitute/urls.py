@@ -38,6 +38,7 @@ urlpatterns = [
     path('checkout/', include('checkout.urls')),
      path('profile/', include('profiles.urls')),
      path('about/', include('about.urls')),
+    path('subscriptions/', include('subscriptions.urls')),
      path('robots.txt', TemplateView.as_view(
         template_name='robots.txt',
         content_type='text/plain'
