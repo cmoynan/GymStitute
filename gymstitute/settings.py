@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [ 'gymstitute-dd4dc8231064.herokuapp.com', '8000-cmoynan-gymstitute-bx4n3h4ydrh.ws.codeinstitute-ide.net']
 
-CSRF_TRUSTED_ORIGINS = ['gymstitute-dd4dc8231064.herokuapp.com', 'https://8000-cmoynan-gymstitute-bx4n3h4ydrh.ws.codeinstitute-ide.net']
+CSRF_TRUSTED_ORIGINS = ['https://gymstitute-dd4dc8231064.herokuapp.com', 'https://8000-cmoynan-gymstitute-bx4n3h4ydrh.ws.codeinstitute-ide.net']
 
 
 
