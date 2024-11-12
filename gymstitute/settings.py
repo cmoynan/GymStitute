@@ -26,9 +26,9 @@ SECRET_KEY = 'p@ei#69*b*zz3u4yie-$()@cy^l(+x9&@6ypx+r0lm(3%_9hr7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-cmoynan-gymstitute-bx4n3h4ydrh.ws.codeinstitute-ide.net']
+ALLOWED_HOSTS = [ 'https://gymstitute-dd4dc8231064.herokuapp.com/', '8000-cmoynan-gymstitute-bx4n3h4ydrh.ws.codeinstitute-ide.net']
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-cmoynan-gymstitute-bx4n3h4ydrh.ws.codeinstitute-ide.net']
+CSRF_TRUSTED_ORIGINS = ['https://gymstitute-dd4dc8231064.herokuapp.com/', 'https://8000-cmoynan-gymstitute-bx4n3h4ydrh.ws.codeinstitute-ide.net']
 
 
 
