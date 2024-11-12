@@ -1,0 +1,146 @@
+[
+{
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+        "category": 1,
+        "sku": "1",
+        "name": "T Shirt",
+        "description": "Nike T shirt",
+        "has_sizes": true,
+        "price": "35.00",
+        "rating": "5.00",
+        "image_url": null,
+        "image": "MNKDFTEEDBATHLETEFS_33XbjtQ.jpg",
+        "updated_at": "2024-11-10T20:05:52.568Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+        "category": 1,
+        "sku": "2",
+        "name": "Leggings",
+        "description": "Nike leggings",
+        "has_sizes": true,
+        "price": "75.00",
+        "rating": "4.00",
+        "image_url": null,
+        "image": "WNP365TIGHTPLUS.png",
+        "updated_at": "2024-11-10T20:05:52.568Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "category": 1,
+        "sku": "3",
+        "name": "Jacket",
+        "description": "Nike Jacket",
+        "has_sizes": true,
+        "price": "120.00",
+        "rating": "5.00",
+        "image_url": null,
+        "image": "MNKRPLMILERJKT.png",
+        "updated_at": "2024-11-10T20:05:52.568Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+        "category": 1,
+        "sku": "4",
+        "name": "Shorts",
+        "description": "Nike Shorts",
+        "has_sizes": true,
+        "price": "20.00",
+        "rating": "3.00",
+        "image_url": null,
+        "image": "MNKDFFORMSHORT7ULGX.png",
+        "updated_at": "2024-11-10T20:05:52.568Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+        "category": 2,
+        "sku": "1e",
+        "name": "Headphones",
+        "description": "Headphones",
+        "has_sizes": false,
+        "price": "150.00",
+        "rating": "3.00",
+        "image_url": null,
+        "image": "headphones.jpg",
+        "updated_at": "2024-11-10T20:05:52.568Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+        "category": 2,
+        "sku": "2e",
+        "name": "Headphones",
+        "description": "Beats Headphones",
+        "has_sizes": false,
+        "price": "450.00",
+        "rating": "4.00",
+        "image_url": null,
+        "image": "beats_headphones.jpg",
+        "updated_at": "2024-11-10T20:05:52.568Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+        "category": 2,
+        "sku": "3e",
+        "name": "Bike",
+        "description": "Peloton Bike",
+        "has_sizes": false,
+        "price": "1500.00",
+        "rating": "5.00",
+        "image_url": null,
+        "image": "peleton_bike.jpg",
+        "updated_at": "2024-11-10T20:05:52.568Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+        "category": 2,
+        "sku": "4e",
+        "name": "Smart Watch",
+        "description": "Smart watch to track your fitness",
+        "has_sizes": false,
+        "price": "245.00",
+        "rating": "2.00",
+        "image_url": null,
+        "image": "smart_watch.jpg",
+        "updated_at": "2024-11-10T20:05:52.568Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+        "category": 2,
+        "sku": "5e",
+        "name": "Smart Watch pro",
+        "description": "Best fitness watch in the market",
+        "has_sizes": false,
+        "price": "350.00",
+        "rating": "5.00",
+        "image_url": null,
+        "image": "smart_watch_2.jpg",
+        "updated_at": "2024-11-10T20:05:52.568Z"
+    }
+}
+]
