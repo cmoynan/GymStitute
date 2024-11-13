@@ -117,11 +117,6 @@
                 {% include 'includes/main-nav.html' %}
             </nav>
         </div>
-        <div id="delivery-banner" class="row text-center">
-            <div class="col bg-black text-white">
-                <h4 class="logo-font my-1">Free delivery on orders over ${{ free_delivery_threshold }}!</h4>
-            </div>
-        </div>
     </header>
     {% if messages %}
     <div class="message-container">
@@ -174,6 +169,37 @@
 
     {% block content %}
     {% endblock %}
+
+    <footer class="container-fluid bg-dark text-white py-4 mt-5">
+        <div class="row text-center">
+            <!-- Contact Info -->
+            <div class="col-md-4 mb-3">
+                <h5>Contact Us</h5>
+                <p>Email: support@gymstitute.com</p>
+                <p>Phone: (123) 123123</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-4 mb-3">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'home' %}" class="text-white">Home</a></li>
+                    <li><a href="{% url 'products' %}" class="text-white">Products</a></li>
+                    <li><a href="{% url 'account_signup' %}" class="text-white">Sign Up</a></li>
+                    <li><a href="{% url 'account_login' %}" class="text-white">Login</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="col-md-4 mb-3">
+                <h5>Follow Us</h5>
+                <a href="https://www.facebook.com" class="text-white mr-3"><i class="fab fa-facebook"></i> Facebook</a><br>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <p class="mb-0">&copy; {{ "now"|date:"Y" }} GymStitute. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     {% block postloadjs %}
     {% endblock %}

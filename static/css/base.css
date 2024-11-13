@@ -157,6 +157,22 @@ btn-outline-black {
     color: #0c5460;
 }
 
+footer {
+    height: 60px;
+    line-height: 60px;
+    background-color: #343a40;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+footer a {
+    color: white;
+}
+footer a:hover {
+    color: #ddd;
+    text-decoration: none;
+}
 
 /* -------------------------------- Media Queries */
 
