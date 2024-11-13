@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [ 'gymstitute-dd4dc8231064.herokuapp.com', '8000-cmoynan-gymstitute-bx4n3h4ydrh.ws.codeinstitute-ide.net']
 
