@@ -23,6 +23,10 @@ body {
     text-transform: uppercase;
 }
 
+.container {
+    background-color: whitesmoke;
+}
+
 .main-logo-link {
     width: fit-content;
 }
