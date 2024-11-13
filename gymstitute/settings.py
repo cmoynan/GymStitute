@@ -200,8 +200,8 @@ if 'USE_AWS' in os.environ:
 
     # Static and media files
     STORAGES = {
-    "default": {
-        "BACKEND": "custom_storages.MediaStorage",
+      "default": {
+          "BACKEND": "custom_storages.MediaStorage",
     },
     "staticfiles": {"BACKEND": "custom_storages.StaticStorage"},
 }

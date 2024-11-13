@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /admin/
-Disallow: /accounts/
-Disallow: /checkout/
-Allow: /
-Sitemap: https://8000-cmoynan-gymstitute-bx4n3h4ydrh.ws.codeinstitute-ide.net/sitemap.xml
