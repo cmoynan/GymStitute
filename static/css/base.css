@@ -1,15 +1,17 @@
 /* Full height for HTML */
-html, body {
+html body {
     min-height: 100%;
 }
 
 body {
     background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
     background-size: cover;
-    height: calc(100vh - 164px);
+    overflow-y: auto; /* Adds a scroll if content overflows */
+    max-height: calc(100vh - [header height] - [footer height]);
     color: #555;
     font-family: 'Lato';
 }
+
 
 /* from Bulma */
 .icon {
@@ -166,23 +168,6 @@ btn-outline-black {
     color: #0c5460;
 }
 
-/* Footer styling */
-footer {
-    height: 25px;
-    line-height: 60px;
-    background-color: #343a40;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-footer a {
-    color: white;
-}
-footer a:hover {
-    color: #ddd;
-    text-decoration: none;
-}
 
 /* -------------------------------- Media Queries */
 

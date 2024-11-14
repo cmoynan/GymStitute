@@ -52,7 +52,7 @@
 
 <body>
     <!-- Header section with logo, search form, account links, and cart info -->
-    <header class="container-fluid fixed-top">
+    <header class="container-fluid fixed-top mb-0">
         <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
@@ -89,9 +89,6 @@
                         <div class="dropdown-menu border-0" aria-labelledby="user-options">
                             <!-- Show different menu items based on user's authentication status -->
                             {% if request.user.is_authenticated %}
-                            {% if request.user.is_superuser %}
-                            <a href="" class="dropdown-item">Product Management</a>
-                            {% endif %}
                             <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
                             {% else %}
@@ -190,14 +187,8 @@
 
     <!-- Main content area, to be filled in by each page -->
     {% block content %}
+    <!-- Content here -->
     {% endblock %}
-
-    <!-- Footer with copyright information -->
-    <footer>
-        <div class="text-center mt-3">
-            <p class="mb-0">&copy; {{ "now"|date:"Y" }} GymStitute. All Rights Reserved.</p>
-        </div>
-    </footer>
 
     <!-- Placeholder for any JavaScript files to load after the main page content -->
     {% block postloadjs %}
