@@ -20,6 +20,11 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import StaticViewSitemap, ProductSitemap, ProfileSitemap
+from django.conf.urls import handler404
+from home import views
+
+handler404 = 'home.views.custom_404_view'
+
 
 sitemaps = {
     'static': StaticViewSitemap,
