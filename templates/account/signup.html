@@ -3,50 +3,41 @@
 {% load allauth i18n crispy_forms_tags %}
 
 {% block content %}
-<div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh; padding-top: 50px;">
+<div class="container d-flex align-items-center justify-content-center min-vh-100 py-5">
     <div class="row w-100 justify-content-center">
-        <!-- Form container with reduced height, and ensuring centering without pushing into header -->
-        <div class="col-md-6 col-lg-4 p-4 text-center border rounded shadow-sm" style="max-height: 500px; width: 100%; overflow-y:auto;">
-            <h4 class="mb-3">{% trans "Sign Up" %}</h4>
+        <div class="col-md-6 col-lg-4">
+            <div class="bg-light p-4 text-center border rounded shadow-sm" style="max-height: 500px; overflow-y: auto;">
+                <h4 class="mb-3">{% trans "Sign Up" %}</h4>
 
-            {% setvar link %} 
-                <a href="{{ login_url }}">{% trans "Sign in" %}</a>
-            {% endsetvar %}
-            {% element p %}
-                {% blocktranslate %}Already have an account? Then please {{ link }}.{% endblocktranslate %}
-            {% endelement %}
+                <p>
+                    {% blocktrans %}
+                    Already have an account? Then please <a href="{{ login_url }}">sign in</a>.
+                    {% endblocktrans %}
+                </p>
 
-            {% if not SOCIALACCOUNT_ONLY %}
-                {% url 'account_signup' as action_url %}
-                {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-                    {% slot body %}
+                {% if not SOCIALACCOUNT_ONLY %}
+                    <form method="post" action="{% url 'account_signup' %}" class="signup-form">
                         {% csrf_token %}
                         {{ redirect_field }}
-                        {% element fields form=form unlabeled=True %}
-                            <!-- Use crispy forms for compact, inline fields with minimal padding -->
-                            {{ form|crispy }}
-                        {% endelement %}
-                    {% endslot %}
-
-                    {% slot actions %}
-                        {% element button tags="prominent,signup" type="submit" class="btn btn-primary w-100 py-2 my-2" %}
+                        {{ form|crispy }}
+                        
+                        <button type="submit" class="btn btn-primary w-100 py-2 my-2">
                             {% trans "Sign Up" %}
-                        {% endelement %}
-                    {% endslot %}
-                {% endelement %}
-            {% endif %}
+                        </button>
+                    </form>
+                {% endif %}
 
-            {% if PASSKEY_SIGNUP_ENABLED %}
-                {% element hr %}
-                {% endelement %}
-                {% element button href=signup_by_passkey_url tags="prominent,signup,outline,primary w-100 my-2" %}
-                    {% trans "Sign up using a passkey" %}
-                {% endelement %}
-            {% endif %}
+                {% if PASSKEY_SIGNUP_ENABLED %}
+                    <hr>
+                    <a href="{{ signup_by_passkey_url }}" class="btn btn-outline-primary w-100 my-2">
+                        {% trans "Sign up using a passkey" %}
+                    </a>
+                {% endif %}
 
-            {% if SOCIALACCOUNT_ENABLED %}
-                {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-            {% endif %}
+                {% if SOCIALACCOUNT_ENABLED %}
+                    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
