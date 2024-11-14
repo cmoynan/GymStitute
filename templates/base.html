@@ -4,26 +4,31 @@
 <html lang="en">
 
 <head>
-
+    <!-- Meta tags for character set, IE compatibility, and responsive design -->
     {% block meta %}
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% endblock %}
 
+    <!-- Extra meta tags, if any -->
     {% block extra_meta %}
     {% endblock %}
 
+    <!-- Core CSS files (Bootstrap, Google Fonts, favicon, and main stylesheet) -->
     {% block corecss %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favi.png' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
+    <!-- Placeholder for any additional CSS files specific to a page -->
     {% block extra_css %}
     {% endblock %}
 
+    <!-- Core JavaScript files (jQuery, Popper.js, Bootstrap, Font Awesome, and Stripe) -->
     {% block corejs %}
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -37,13 +42,16 @@
     <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
 
+    <!-- Placeholder for additional JavaScript files specific to a page -->
     {% block extra_js %}
     {% endblock %}
 
+    <!-- Page title -->
     <title>GymStitute {% block extra_title %}{% endblock %}</title>
 </head>
 
 <body>
+    <!-- Header section with logo, search form, account links, and cart info -->
     <header class="container-fluid fixed-top">
         <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
@@ -52,6 +60,7 @@
                 </a>
             </div>
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                <!-- Search form -->
                 <form method="GET" action="{% url 'products' %}">
                     <div class="input-group w-100">
                         <input class="form-control border border-black rounded-0" type="text" name="q"
@@ -67,6 +76,7 @@
                 </form>
             </div>
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                <!-- Account and shopping bag links -->
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     <li class="list-inline-item dropdown">
                         <a class="text-black nav-link" href="" id="user-options" data-toggle="dropdown"
@@ -77,6 +87,7 @@
                             </div>
                         </a>
                         <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                            <!-- Show different menu items based on user's authentication status -->
                             {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
                             <a href="" class="dropdown-item">Product Management</a>
@@ -90,6 +101,7 @@
                         </div>
                     </li>
                     <li class="list-inline-item">
+                        <!-- Cart link with dynamic total -->
                         <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
                             href="{% url 'view_bag' %}">
                             <div class="text-center">
@@ -107,6 +119,7 @@
                 </ul>
             </div>
         </div>
+        <!-- Navbar with toggler button for mobile view -->
         <div class="row bg-white">
             <nav class="navbar navbar-expand-lg navbar-light w-100">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
@@ -118,89 +131,75 @@
             </nav>
         </div>
     </header>
+
+    <!-- Message display for notifications -->
     {% if messages %}
     <div class="message-container">
         {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
-                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                    <div class="alert alert-danger border-danger">
-                        <strong>Error!</strong> {{ message }}
-                        <button type="button" class="btn-close" onclick="this.parentElement.parentElement.style.display='none';" aria-label="Close">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-                    <div class="alert alert-success border-success">
-                        <strong>Success!</strong> {{ message }}
-                        <button type="button" class="btn-close" onclick="this.parentElement.parentElement.style.display='none';" aria-label="Close">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
-                    <div class="alert alert-info border-info">
-                        <strong>Info!</strong> {{ message }}
-                        <button type="button" class="btn-close" onclick="this.parentElement.parentElement.style.display='none';" aria-label="Close">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
-                    <div class="alert alert-warning border-warning">
-                        <strong>Warning!</strong> {{ message }}
-                        <button type="button" class="btn-close" onclick="this.parentElement.parentElement.style.display='none';" aria-label="Close">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                {% else %}
-                    <div class="alert alert-dark border-dark">
-                        {{ message }}
-                        <button type="button" class="btn-close" onclick="this.parentElement.parentElement.style.display='none';" aria-label="Close">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                {% endif %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
+            <!-- Different message styling for error, success, info, and warning levels -->
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="alert alert-danger border-danger">
+                <strong>Error!</strong> {{ message }}
+                <button type="button" class="btn-close" onclick="this.parentElement.parentElement.style.display='none';"
+                    aria-label="Close">
+                    <span>&times;</span>
+                </button>
             </div>
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert alert-success border-success">
+                <strong>Success!</strong> {{ message }}
+                <button type="button" class="btn-close" onclick="this.parentElement.parentElement.style.display='none';"
+                    aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+            <div class="alert alert-info border-info">
+                <strong>Info!</strong> {{ message }}
+                <button type="button" class="btn-close" onclick="this.parentElement.parentElement.style.display='none';"
+                    aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+            <div class="alert alert-warning border-warning">
+                <strong>Warning!</strong> {{ message }}
+                <button type="button" class="btn-close" onclick="this.parentElement.parentElement.style.display='none';"
+                    aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+            {% else %}
+            <div class="alert alert-dark border-dark">
+                {{ message }}
+                <button type="button" class="btn-close" onclick="this.parentElement.parentElement.style.display='none';"
+                    aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+            {% endif %}
+        </div>
         {% endfor %}
     </div>
-{% endif %}
+    {% endif %}
 
-
+    <!-- Placeholder for page header content, if any -->
     {% block page_header %}
     {% endblock %}
 
+    <!-- Main content area, to be filled in by each page -->
     {% block content %}
     {% endblock %}
 
-    <footer class="container-fluid bg-dark text-white py-4 mt-5">
-        <div class="row text-center">
-            <!-- Contact Info -->
-            <div class="col-md-4 mb-3">
-                <h5>Contact Us</h5>
-                <p>Email: support@gymstitute.com</p>
-                <p>Phone: (123) 123123</p>
-            </div>
-
-            <!-- Quick Links -->
-            <div class="col-md-4 mb-3">
-                <h5>Quick Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="{% url 'home' %}" class="text-white">Home</a></li>
-                    <li><a href="{% url 'products' %}" class="text-white">Products</a></li>
-                    <li><a href="{% url 'account_signup' %}" class="text-white">Sign Up</a></li>
-                    <li><a href="{% url 'account_login' %}" class="text-white">Login</a></li>
-                </ul>
-            </div>
-
-            <!-- Social Media Links -->
-            <div class="col-md-4 mb-3">
-                <h5>Follow Us</h5>
-                <a href="https://www.facebook.com" class="text-white mr-3"><i class="fab fa-facebook"></i> Facebook</a><br>
-            </div>
-        </div>
+    <!-- Footer with copyright information -->
+    <footer>
         <div class="text-center mt-3">
             <p class="mb-0">&copy; {{ "now"|date:"Y" }} GymStitute. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- Placeholder for any JavaScript files to load after the main page content -->
     {% block postloadjs %}
     {% endblock %}
 

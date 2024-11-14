@@ -1,6 +1,6 @@
 /* Full height for HTML */
-html {
-    height: 100%;
+html, body {
+    min-height: 100%;
 }
 
 body {
@@ -168,7 +168,7 @@ btn-outline-black {
 
 /* Footer styling */
 footer {
-    height: 60px;
+    height: 25px;
     line-height: 60px;
     background-color: #343a40;
     color: white;
