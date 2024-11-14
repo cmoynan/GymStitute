@@ -1,0 +1,11 @@
+{% block content %}
+<div class="container text-center">
+    <div class="card p-5">
+        <h1>Oops! Page not found</h1>
+        <img src="{{ MEDIA_URL }}error404.jpg" alt="Error 404" style="max-width: 20%; height: 20vh;">
+        <p>We can't seem to find the page you're looking for.</p>
+        
+        <a href="{% url 'home' %}" class="btn btn-primary rounded-pill px-4 py-2">Please come back home</a>
+    </div>
+</div>
+{% endblock %}
