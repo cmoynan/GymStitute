@@ -1,7 +1,9 @@
+/* Full height for HTML */
 html {
     height: 100%;
 }
 
+/* Body styling with background image */
 body {
     background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -23,10 +25,12 @@ body {
     text-transform: uppercase;
 }
 
+/* Main logo link styling */
 .main-logo-link {
     width: fit-content;
 }
 
+/* Shop now button with custom styling */
 .shop-now-button {
     background: transparent;
     color: white;
@@ -65,6 +69,7 @@ btn-outline-black {
     color: white;
 }
 
+/* Text and border color helpers */
 .text-black {
     color: #000 !important;
 }
@@ -77,6 +82,7 @@ btn-outline-black {
     background: #000 !important;
 }
 
+/* Full-page overlay (used for loading or other purposes) */
 .overlay {
 	height: 100%;
 	width: 100%;
@@ -87,6 +93,7 @@ btn-outline-black {
 	z-index: -1;
 }
 
+/* Message container styling */
 .message-container {
     position: fixed;
     top: 72px;
@@ -98,6 +105,7 @@ btn-outline-black {
     overflow: visible;
 }
 
+/* Alert box styling */
 .alert {
     margin: 15px;
     padding: 15px;
@@ -108,6 +116,7 @@ btn-outline-black {
     padding-right: 35px;  /* Make room for close button */
 }
 
+/* Close button styling */
 .btn-close {
     position: absolute;
     right: 10px;
@@ -133,6 +142,7 @@ btn-outline-black {
     top: -2px;
 }
 
+/* Alert types (success, danger, warning, info) */
 .alert-success {
     background-color: #d4edda;
     border-color: #c3e6cb;
@@ -157,6 +167,7 @@ btn-outline-black {
     color: #0c5460;
 }
 
+/* Footer styling */
 footer {
     height: 60px;
     line-height: 60px;
@@ -221,15 +232,5 @@ footer a:hover {
             padding: 10px;
         }
 
-    #delivery-banner h4 {
-            font-size: .9rem;
-        }    
-
-}
-
-@media (max-width: 350px) {
-    #delivery-banner {
-        display: none;
-    }
 
 }

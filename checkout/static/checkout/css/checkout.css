@@ -1,6 +1,10 @@
 body {
   background-image: none !important;
 }
+
+/* -------------------- Stripe Element Styles -------------------- */
+
+/* General styles for Stripe input elements */
 .StripeElement,
 .stripe-style-input {
   box-sizing: border-box;
@@ -28,11 +32,15 @@ body {
     color: #aab7c4;
 }
 
+/* -------------------- Form Label Styles -------------------- */
+
+/* Positioning the label for form fields */
 .fieldset-label {
     position: relative;
     right: .5rem;
 }
 
+/* Styling for the payment form control elements (input fields) */
 #payment-form .form-control,
 #card-element {
     color: #000;
