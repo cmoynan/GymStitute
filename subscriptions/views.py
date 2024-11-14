@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.conf import settings
 from .models import SubscriptionType, Subscription
 import stripe
+from django.core.mail import send_mail
 
 # Create your views here
 
@@ -69,6 +70,23 @@ def create_subscription(request, subscription_id):
                 stripe_subscription_id=stripe_subscription.id,
             )
 
+            # Send confirmation email
+            subject = f"Subscription Confirmation: {subscription_type.name}"
+            message = (
+                f"Hello {request.user.first_name},\n\n"
+                f"Thank you for subscribing to {subscription_type.name}. Your subscription has been successfully created.\n\n"
+                f"Subscription Type: {subscription_type.name}\n"
+                f"Subscription ID: {subscription.stripe_subscription_id}\n\n"
+                "Thank you for choosing GymStitute as your go to Gym Buddy!"
+            )
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [request.user.email],
+            )
+
+
             messages.success(
                 request, f'Successfully subscribed to {subscription_type.name}!'
             )
@@ -101,6 +119,23 @@ def manage_subscription(request, subscription_id):
                 subscription.status = 'CANCELLED'
                 subscription.is_active = False
                 subscription.save()
+                
+                # Send confirmation email
+                subject = f"Subscription Cancelled: {subscription.subscription_type.name}"
+                message = (
+                    f"Hello {request.user.first_name},\n\n"
+                    f"Your subscription to {subscription.subscription_type.name} has been successfully cancelled.\n\n"
+                    f"Subscription ID: {subscription.stripe_subscription_id}\n"
+                    "We’re sorry to see you go, but you can always re-subscribe at any time.\n\n"
+                    "Thank you for using our service!"
+                )
+                send_mail(
+                    subject,
+                    message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [request.user.email],
+                )
+
 
                 messages.success(request, 'Subscription successfully cancelled.')
             except Exception as e:

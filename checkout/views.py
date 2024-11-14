@@ -7,6 +7,7 @@ from .forms import OrderForm
 from .models import Order, OrderLineItem
 from products.models import Product
 from bag.contexts import bag_contents
+from django.core.mail import send_mail
 
 import stripe
 import json
@@ -93,6 +94,30 @@ def checkout(request):
                     )
                     order.delete()
                     return redirect(reverse('view_bag'))
+
+            subject = f'Order Confirmation - {order.order_number}'
+            message = (
+                f'Thank you for your order, {order.full_name}!\n\n'
+                f'Here are the details of your order:\n'
+            )
+            for item_id, item_data in bag.items():
+                product = Product.objects.get(id=item_id)
+                if isinstance(item_data, int):
+                    message += f"- {product.name} (Quantity: {item_data})\n"
+                else:
+                    for size, quantity in item_data['items_by_size'].items():
+                        message += f"- {product.name} (Size: {size}, Quantity: {quantity})\n"
+            message += f"\nOrder Total: ${order.grand_total:.2f}\n"
+            message += "\nThank you for shopping with us!\n"
+            message += "The GymStitute Team\n"
+            message += "\nVisit our website: https://gymstitute-dd4dc8231064.herokuapp.com/"
+
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [order.email],
+            )        
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
