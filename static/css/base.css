@@ -3,7 +3,6 @@ html {
     height: 100%;
 }
 
-/* Body styling with background image */
 body {
     background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
     background-size: cover;
