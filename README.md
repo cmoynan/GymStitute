@@ -1,5 +1,9 @@
 ![image](https://github.com/user-attachments/assets/43b2ab64-e5d6-4386-a393-0c23047b14b9)
 
+### SuperUser access
+username: Christy
+Password - Kildare89
+
 
 # Gymstitute
 
@@ -274,6 +278,37 @@ With clear error messages and guidance, users are more confident in completing t
 
 Design Approach
 The design of Gymstitute is centered around providing users with a clean, intuitive, and seamless shopping and subscription experience. We have focused on ensuring that the platform is both visually appealing and easy to navigate, while also being fully responsive across all devices.
+
+# GymStitute - Email Authentication and Notifications
+
+This project integrates email notifications for various user actions, including order placements, subscription management, and user sign-up.
+
+## Key Features
+
+### 1. Order Confirmation Emails
+   - After a user successfully places an order on the platform, a confirmation email is sent to the email address they provided during checkout.
+   - The email contains:
+     - A thank-you message.
+     - Details of the purchased items.
+     - Total order value and any additional relevant information.
+
+### 2. Subscription Management Emails
+
+   - **Subscription Creation**:
+   - 
+   - After a user subscribes to a ser
+   - vice (e.g., a gym membership), they will receive an email confirming their subscription details.
+   - **Subscription Cancellation**:
+   - If a user cancels their subscription, an email notification is sent confirming the cancellation.
+
+### 3. **User Authentication Emails**
+
+   - **Sign-Up Confirmation**:
+   - 
+   -  A verification email is sent to users after they sign up. The email contains a confirmation link to verify their email address.
+   - **Password Reset**:
+   - 
+   -  Users can also reset their password if needed via an email with a reset link.
 
 ## Design Overview:
 
