@@ -33,7 +33,6 @@ sitemaps = {
 }
 
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
@@ -41,14 +40,13 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('bag/', include('bag.urls')),
     path('checkout/', include('checkout.urls')),
-     path('profile/', include('profiles.urls')),
-     path('about/', include('about.urls')),
+    path('profile/', include('profiles.urls')),
+    path('about/', include('about.urls')),
     path('subscriptions/', include('subscriptions.urls')),
-     path('robots.txt', TemplateView.as_view(
+    path('robots.txt', TemplateView.as_view(
         template_name='robots.txt',
         content_type='text/plain'
     )),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

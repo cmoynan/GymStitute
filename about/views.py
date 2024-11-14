@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .models import NewsletterSubscriber
 from .forms import NewsletterSignupForm
 from django.contrib import messages
+
 
 # Create your views here.
 def about(request):
@@ -12,7 +11,8 @@ def about(request):
         # Add a success message to be displayed after form submission
         messages.success(request, 'Thank you for subscribing to our newsletter!')
 
-        return redirect('about')  # Redirect to the same page to show the message
+        return redirect('about')  
+        
+        # Redirect to the same page to show the message
 
     return render(request, 'about/about.html')
-

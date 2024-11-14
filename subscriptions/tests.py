@@ -12,7 +12,9 @@ class SubscriptionViewsTests(TestCase):
 
     def setUp(self):
         # Create a test user and log them in
-        self.user = User.objects.create_user(username='testuser', password='password123')
+        self.user = User.objects.create_user(
+            username='testuser', password='password123'
+        )
         self.client.login(username='testuser', password='password123')
 
         # Create test subscription types with required fields (including price)
@@ -33,24 +35,39 @@ class SubscriptionViewsTests(TestCase):
         )
 
     def test_subscription_list_view(self):
-        """ Test that the subscription list page loads correctly """
+        """Test that the subscription list page loads correctly"""
         response = self.client.get(reverse('subscription_list'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'subscriptions/subscription_list.html')  # Correct template used
-        self.assertContains(response, self.subscription_type.name)  # Ensure the subscription type is in the response
+        self.assertTemplateUsed(
+            response, 'subscriptions/subscription_list.html'
+        )  # Correct template used
+        self.assertContains(
+            response, self.subscription_type.name
+        )  # Ensure the subscription type is in the response
 
     def test_subscription_detail_view(self):
-        """ Test that the subscription detail page loads correctly """
-        response = self.client.get(reverse('subscription_detail', args=[self.subscription_type.id]))
+        """Test that the subscription detail page loads correctly"""
+        response = self.client.get(
+            reverse('subscription_detail', args=[self.subscription_type.id])
+        )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'subscriptions/subscription_detail.html')  # Correct template used
-        self.assertContains(response, self.subscription_type.name)  # Ensure the subscription name is in the response
+        self.assertTemplateUsed(
+            response, 'subscriptions/subscription_detail.html'
+        )  # Correct template used
+        self.assertContains(
+            response, self.subscription_type.name
+        )  # Ensure the subscription name is in the response
 
     def test_create_subscription_view(self):
-        """ Test that creating a new subscription works """
+        """Test that creating a new subscription works"""
         # Create a mock POST request to simulate subscribing
         post_data = {
             'stripeToken': 'tok_visa',  # Mock Stripe token for testing
         }
-        response = self.client.post(reverse('create_subscription', args=[self.subscription_type.id]), post_data)
-        self.assertEqual(Subscription.objects.latest('id').user, self.user)  # Ensure the subscription belongs to the logged-in user
+        response = self.client.post(
+            reverse('create_subscription', args=[self.subscription_type.id]),
+            post_data
+        )
+        self.assertEqual(
+            Subscription.objects.latest('id').user, self.user
+        )  # Ensure the subscription belongs to the logged-in user
