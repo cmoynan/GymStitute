@@ -291,6 +291,9 @@ This project integrates email notifications for various user actions, including 
      - A thank-you message.
      - Details of the purchased items.
      - Total order value and any additional relevant information.
+    
+       ![image](https://github.com/user-attachments/assets/cedafe0d-c6f8-4cc7-9108-75b78a4dfd16)
+
 
 ### 2. Subscription Management Emails
 
@@ -301,6 +304,9 @@ This project integrates email notifications for various user actions, including 
    - **Subscription Cancellation**:
    - If a user cancels their subscription, an email notification is sent confirming the cancellation.
 
+     ![image](https://github.com/user-attachments/assets/bcdb3571-e0b0-4a7f-8bf1-8093b5e847fd)
+
+
 ### 3. **User Authentication Emails**
 
    - **Sign-Up Confirmation**:
@@ -309,6 +315,9 @@ This project integrates email notifications for various user actions, including 
    - **Password Reset**:
    - 
    -  Users can also reset their password if needed via an email with a reset link.
+
+     ![image](https://github.com/user-attachments/assets/bb2ef3cf-3125-4b8c-8f53-781c29a582e9)
+
 
 ## Design Overview:
 
