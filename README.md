@@ -508,7 +508,7 @@ Posts on our Facebook page include direct links to product pages on the website,
 
 By leveraging Facebook, Gymstitute can reach a wider audience and keep users informed about the latest products, events, and updates. This marketing strategy is a key component of our efforts to build an active and engaged community around the Gymstitute brand.
 
-#### Please be advsied the links on the wesbite will not redirect to the Facebook page as per instruction from the course the page may get deleted by the time of review so the facebook links will just open up the facebook login page.
+#### Please be advsied the links on the website will not redirect to the Facebook page as per instruction from the course. The page may get deleted by the time of review so the facebook links will just open up the facebook login page.
 
 ## Databases and Cloud Hosting
 
