@@ -385,7 +385,7 @@ In addition to automated tests, Gymstitute underwent thorough manual testing to 
 
 ### Performance Testing
 
-The website unfortunetely failsat times withthe light house performace . At times it is all above 90 but at other times it can be like below. The indicators of that needs to be chnged is well outside my scope . After extensive research in minimize threadwork and reducing unused CSS and JS without breaking my code I could not get the lighthouse scroe consistent.One change i did make that vasl improved performace was reducing the background image size. Decsion was made to submit as is due to time constraints and knowedge on how to further imprve. 
+The website unfortunetely fails at times with the light house performace . At times it is all above 90 but at other times it can be like below. The indicators of what needs to be chnged is well outside my scope . After extensive research in minimize threadwork and reducing unused CSS and JS without breaking my code I could not get the lighthouse score consistent albeit at times it seems to work fine.One change i did make that vastly improved performance was reducing the background image size. Decision was made to submit as is due to time constraints and knowledge on how to further improve the lighthouse score. 
 
 ![image](https://github.com/user-attachments/assets/e2a1cefd-9fcf-48dd-a89e-5f56529c883b)
 
@@ -565,12 +565,13 @@ https://github.com/users/cmoynan/projects/6/views/1
 Cloning and Forking the Project from GitHub
 To get a copy of the GymStitute project up and running on your local machine, follow these steps:
 
-Cloning the Repository
+## Cloning the Repository
+
 Navigate to the GitHub Repository: Go to the GitHub repository page for LocalEatz.
 
 https://github.com/cmoynan/Gymstitute
 
-## Clone the Repository:
+### Clone the Repository:
 
 Click on the "Code" button on the repository page. Copy the HTTPS or SSH URL provided.
 
