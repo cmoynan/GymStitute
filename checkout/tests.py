@@ -3,11 +3,14 @@ from django.contrib.auth.models import User
 from products.models import Product
 from django.urls import reverse
 
+
 class CheckoutTests(TestCase):
 
     def setUp(self):
         # Create a user for testing
-        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.user = User.objects.create_user(
+         username='testuser', password='testpassword'
+        )
 
         # Create a product for the bag (no stock field included)
         self.product = Product.objects.create(
@@ -26,8 +29,7 @@ class CheckoutTests(TestCase):
         self.client.session.save()  # Save the session data
 
         # Get the checkout page
-        response = self.client.get(reverse('checkout'))  # Adjusted to use reverse
-
+        response = self.client.get(reverse('checkout'))
 
     def test_checkout_page_get_empty_bag(self):
         """Test if the user is redirected when the cart is empty."""
@@ -39,11 +41,10 @@ class CheckoutTests(TestCase):
         self.client.session.save()
 
         # Get the checkout page
-        response = self.client.get(reverse('checkout'))  # Adjusted to use reverse
-
+        response = self.client.get(reverse('checkout'))
 
     def test_checkout_post_valid(self):
-        """Test if POST request with valid data leads to a successful redirect."""
+        """POST request with valid data leads to a successful redirect."""
         # Log in the user
         self.client.login(username='testuser', password='testpassword')
 
@@ -68,5 +69,5 @@ class CheckoutTests(TestCase):
         # Check that the user is redirected after successful form submission
         self.assertEqual(response.status_code, 302)
 
-        # Since the redirect URL contains the order number, we check if it starts with /checkout/checkout_success/
+        # URL contains the ord num ,check if starts /checkout/checkout_success/
         self.assertTrue(response.url.startswith('/checkout/checkout_success/'))

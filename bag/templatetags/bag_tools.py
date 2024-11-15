@@ -9,4 +9,3 @@ def calc_subtotal(price, quantity):
         return price * quantity
     else:
         return 0
-        

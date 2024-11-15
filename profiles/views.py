@@ -5,6 +5,7 @@ from checkout.models import Order, OrderLineItem
 from .forms import UserProfileForm
 from bag.contexts import bag_contents
 
+
 # Create your views here.
 @login_required
 def profile(request):
@@ -19,7 +20,7 @@ def profile(request):
         if form.is_valid():
             form.save()
 
-            return redirect('profile') 
+            return redirect('profile')
         else:
             # form errors to debug
             print(form.errors)
@@ -38,11 +39,12 @@ def profile(request):
 
 def order_detail(request, order_number):
     """ Display a single order's details """
-    order = get_object_or_404(Order, order_number=order_number, user=request.user)
+    order = get_object_or_404(Order, order_number=order_number,
+                              user=request.user)
 
     template = 'profiles/order_detail.html'
     context = {
         'order': order,
     }
 
-    return render(request, template, context)     
+    return render(request, template, context)

@@ -8,6 +8,7 @@ from django.conf import settings
 # Mock the Stripe API key for testing
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+
 class SubscriptionViewsTests(TestCase):
 
     def setUp(self):
@@ -19,18 +20,18 @@ class SubscriptionViewsTests(TestCase):
 
         # Create test subscription types with required fields (including price)
         self.subscription_type = SubscriptionType.objects.create(
-            name="Basic Plan", 
-            description="Description of Basic Plan", 
-            stripe_price_id="price_test", 
+            name="Basic Plan",
+            description="Description of Basic Plan",
+            stripe_price_id="price_test",
             price=10.00,  # Add the missing price field here
             is_active=True
         )
 
         # Create a subscription for the user
         self.subscription = Subscription.objects.create(
-            user=self.user, 
-            subscription_type=self.subscription_type, 
-            stripe_subscription_id="sub_test", 
+            user=self.user,
+            subscription_type=self.subscription_type,
+            stripe_subscription_id="sub_test",
             is_active=True
         )
 

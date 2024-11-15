@@ -86,7 +86,6 @@ def create_subscription(request, subscription_id):
                 [request.user.email],
             )
 
-
             messages.success(
                 request, f'Successfully subscribed to {subscription_type.name}!'
             )
@@ -119,7 +118,7 @@ def manage_subscription(request, subscription_id):
                 subscription.status = 'CANCELLED'
                 subscription.is_active = False
                 subscription.save()
-                
+
                 # Send confirmation email
                 subject = f"Subscription Cancelled: {subscription.subscription_type.name}"
                 message = (
@@ -136,8 +135,7 @@ def manage_subscription(request, subscription_id):
                     [request.user.email],
                 )
 
-
-                messages.success(request, 'Subscription successfully cancelled.')
+                messages.success(request, 'Subscription cancelled.')
             except Exception as e:
                 messages.error(request, f"An error occurred: {str(e)}")
 

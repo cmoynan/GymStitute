@@ -40,7 +40,7 @@ class SubscriptionType(models.Model):
 class Subscription(models.Model):
     """Model for user subscriptions"""
     user = models.ForeignKey(
-        User, 
+        User,
         on_delete=models.CASCADE,
         related_name='subscriptions'
     )
@@ -55,14 +55,14 @@ class Subscription(models.Model):
         max_length=100, blank=True, null=True
     )
     next_billing_date = models.DateTimeField(null=True, blank=True)
-    
+
     STATUS_CHOICES = [
         ('ACTIVE', 'Active'),
         ('CANCELLED', 'Cancelled'),
         ('PAST_DUE', 'Past Due'),
         ('UNPAID', 'Unpaid'),
     ]
-    
+
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
@@ -70,7 +70,8 @@ class Subscription(models.Model):
     )
 
     def __str__(self):
-        return f"{self.user.username} - {self.subscription_type.get_subscription_type_display()}"
+        return f"{self.user.username} - " \
+         f"{self.subscription_type.get_subscription_type_display()}"
 
 
 class SubscriptionBenefit(models.Model):

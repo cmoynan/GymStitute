@@ -7,7 +7,9 @@ class BagViewsTest(TestCase):
         self.client = Client()
         self.view_bag_url = reverse('view_bag')
         self.add_to_bag_url = reverse('add_to_bag', args=['test_item'])
-        self.remove_from_bag_url = reverse('remove_from_bag', args=['test_item'])
+        self.remove_from_bag_url = reverse(
+         'remove_from_bag', args=['test_item']
+        )
 
     def test_view_bag_template(self):
         """Test that the bag page renders the correct template."""
@@ -44,7 +46,7 @@ class BagViewsTest(TestCase):
         self.assertEqual(response.status_code, 302)
         bag = self.client.session.get('bag', {})
         self.assertIn('test_item', bag)
-        self.assertIn('M', bag['test_item']['items_by_size'])  # Check size 'M' added
+        self.assertIn('M', bag['test_item']['items_by_size'])
         self.assertEqual(bag['test_item']['items_by_size']['M'], 1)
         messages = list(response.wsgi_request._messages)
         self.assertTrue(any(

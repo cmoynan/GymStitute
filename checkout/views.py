@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render, redirect, reverse, get_object_or_404, HttpResponse
+)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -27,7 +29,7 @@ def cache_checkout_data(request):
     except Exception as e:
         messages.error(
             request,
-            'Sorry, your payment cannot be processed right now. Please try again later.'
+            'Sorry, your payment cannot be processed right now.Try again Later'
         )
         return HttpResponse(content=e, status=400)
 
@@ -89,7 +91,8 @@ def checkout(request):
                 except Product.DoesNotExist:
                     messages.error(
                         request,
-                        "One of the products in your bag wasn't found in our database. "
+                        "One of the products in your bag"
+                        "wasn't found in our database. "
                         "Please call us for assistance!"
                     )
                     order.delete()
@@ -106,26 +109,32 @@ def checkout(request):
                     message += f"- {product.name} (Quantity: {item_data})\n"
                 else:
                     for size, quantity in item_data['items_by_size'].items():
-                        message += f"- {product.name} (Size: {size}, Quantity: {quantity})\n"
+                        message += f"- {product.name} (Size: {size}, "
+                        message += f"Quantity: {quantity})\n"
+
             message += f"\nOrder Total: ${order.grand_total:.2f}\n"
             message += "\nThank you for shopping with us!\n"
             message += "The GymStitute Team\n"
-            message += "\nVisit our website: https://gymstitute-dd4dc8231064.herokuapp.com/"
+            message += f"- {product.name} (Size: {size}, "
+            message += f"Quantity: {quantity})\n"
 
             send_mail(
                 subject,
                 message,
                 settings.DEFAULT_FROM_EMAIL,
                 [order.email],
-            )        
+                )
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            redirect_url = reverse(
+             'checkout_success', args=[order.order_number]
+            )
+            return redirect(redirect_url)
 
         else:
             messages.error(
                 request,
-                'There was an error with your form. Please double check your information.'
+                'There was an error with your form. Please check your info.'
             )
 
     else:
@@ -166,7 +175,7 @@ def checkout(request):
     if not stripe_public_key:
         messages.warning(
             request,
-            'Stripe public key is missing. Did you forget to set it in your environment?'
+            'Stripe public key missing. Did you forget to set your environ?'
         )
 
     template = 'checkout/checkout.html'
